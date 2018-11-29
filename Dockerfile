@@ -1,5 +1,6 @@
 FROM java:openjdk-8-jre-alpine
-MAINTAINER JLL "lelan-j@mgdis.fr"
+MAINTAINER eXo Platform "<docker@exoplatform.com>"
+Label original_author="JLL lelan-j@mgdis.fr"
 
 # TOMCAT 
 # Expose web port
@@ -7,7 +8,7 @@ EXPOSE 8080
 
 # Tomcat Version
 ENV TOMCAT_VERSION_MAJOR 7
-ENV TOMCAT_VERSION_FULL  7.0.69
+ENV TOMCAT_VERSION_FULL  7.0.92
 
 # Download and install
 RUN set -x \
@@ -16,8 +17,8 @@ RUN set -x \
   && addgroup tomcat && adduser -s /bin/bash -D -G tomcat tomcat \
   && mkdir /opt \
   && curl -LO https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz \
-  && curl -LO https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz.md5 \
-  && md5sum -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz.md5 \
+  && curl -LO https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz.sha512 \
+  && sha512sum -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz.sha512 \
   && gunzip -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz | tar -xf - -C /opt \
   && rm -f apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz.md5 \
   && ln -s /opt/apache-tomcat-${TOMCAT_VERSION_FULL} /opt/tomcat \
