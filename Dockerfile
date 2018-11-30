@@ -1,3 +1,9 @@
+FROM exoplatform/ci:jdk8-maven33 AS build
+
+COPY . .
+RUN mvn clean package
+
+
 FROM java:openjdk-8-jre-alpine
 MAINTAINER eXo Platform "<docker@exoplatform.com>"
 Label original_author="JLL lelan-j@mgdis.fr"
@@ -35,14 +41,15 @@ ENV CATALINA_HOME /opt/tomcat
 
 # lightweightcmis 
 
-#ENV VERSION 0.13.0-SNAPSHOT
-ENV VERSION 0.12.12-SNAPSHOT
+ENV VERSION 0.13.0-SNAPSHOT
+#ENV VERSION 0.12.12-SNAPSHOT
 
 RUN set -x \
     && mkdir -p /data/cmis \
     && mkdir -p /data/log
 
-ADD target/*.war /tmp/lightweightcmis-${VERSION}.war
+#ADD target/*.war /tmp/lightweightcmis-${VERSION}.war
+COPY --from=build /srv/ciagent/workspace/target/*.war /tmp/lightweightcmis-${VERSION}.war
 
 RUN set -x \
 	&& mkdir ${TOMCAT_BASE}/webapps/lightweightcmis \
