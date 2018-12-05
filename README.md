@@ -1,6 +1,4 @@
 # CMIS 1.1 compliant lightweight server
-### Status
-[![Build Status](https://travis-ci.org/johanlelan/lightweightCMISserver.svg?branch=master)](https://travis-ci.org/MGDIS/lightweightCMISserver) [![Coverage Status](https://img.shields.io/coveralls/johanlelan/lightweightCMISserver.svg)](https://coveralls.io/r/johanlelan/lightweightCMISserver)
 
 **This implementation is a fork of Apache Chemistry OpenCMIS inMemory Server with file persistence!**
 
@@ -85,7 +83,9 @@ URL : http://localhost.:8080/lightweightcmis/browser
 ## Docker
 If you want to create a docker image.
 ```sh
-git clone https://github.com/MGDIS/lightweightCMISserver.git
+git clone https://github.com/exo-docker/lightweightCMISserver.git
 cd lightweightCMISserver
 docker build -t lightweightcmis .
 ```
+Please note that the context to use along the docker image is /cmis instead of original /lightweightcmis to enable 
+http://localhost.:8080/lightweightcmis/browser
