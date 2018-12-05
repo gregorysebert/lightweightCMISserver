@@ -87,5 +87,6 @@ git clone https://github.com/exo-docker/lightweightCMISserver.git
 cd lightweightCMISserver
 docker build -t lightweightcmis .
 ```
-Please note that the context to use along the docker image is /cmis instead of original /lightweightcmis to enable 
-http://localhost.:8080/lightweightcmis/browser
+## Note
+Please note that the context to use along the docker image is /cmis instead of original /lightweightcmis to enable esier cmis server switch in eXo ADT
+http://localhost.:8080/cmis/browser

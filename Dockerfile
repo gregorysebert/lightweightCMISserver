@@ -2,7 +2,7 @@ FROM exoplatform/ci:jdk8-maven33 AS build
 
 COPY . .
 #Skip test that are failing only in docker hub
-RUN mvn clean package -DskipTests=true
+RUN mvn clean package -Dmaven.test.skip=true
 
 
 FROM java:openjdk-8-jre-alpine
